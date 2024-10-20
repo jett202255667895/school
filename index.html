@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Page</title>
-    <button onclick="location.href='home.html'">Home</button>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -87,49 +86,51 @@
             cursor: pointer;
         }
 
-        /* Contact Us Section */
-        .contact-us {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            margin-top: 50px;
+        /* Cart Popup */
+        .cart-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none;
+            width: 300px;
         }
 
-        .contact-us h2 {
-            font-size: 24px;
+        .cart-popup h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .cart-popup ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .cart-popup ul li {
             margin-bottom: 10px;
         }
 
-        .contact-us p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        .contact-us a {
-            color: #28a745;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .contact-us a:hover {
-            color: #a8e063;
-        }
-
-        .alert {
-            background-color: #f4f4f4;
-            padding: 15px;
-            border: 1px solid #ccc;
-        }
-
-        .alert .closebtn {
-            margin-left: 15px;
-            color: black;
-            font-weight: bold;
-            float: right;
-            font-size: 22px;
-            line-height: 20px;
+        .cart-popup .checkout-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+        }
+
+        .cart-popup .close-popup {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            float: right;
         }
     </style>
 </head>
@@ -151,7 +152,7 @@
                 </a>
                 <h3>2024 M4 Magic Keyboard for iPad Pro</h3>
                 <p class="price">AU$98.27</p>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <button class="add-to-cart-btn" onclick="addToCart('2024 M4 Magic Keyboard for iPad Pro', 'AU$98.27')">Add to Cart</button>
             </div>
 
             <!-- Product 2 -->
@@ -161,7 +162,7 @@
                 </a>
                 <h3>Mulan iPad Case With Keyboard</h3>
                 <p class="price">AU$114.98</p>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <button class="add-to-cart-btn" onclick="addToCart('Mulan iPad Case With Keyboard', 'AU$114.98')">Add to Cart</button>
             </div>
 
             <!-- Product 3 -->
@@ -171,7 +172,7 @@
                 </a>
                 <h3>2024 Magic Keyboard for iPad Pro 11-inch</h3>
                 <p class="price">AU$143.21</p>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <button class="add-to-cart-btn" onclick="addToCart('2024 Magic Keyboard for iPad Pro 11-inch', 'AU$143.21')">Add to Cart</button>
             </div>
 
             <!-- Product 4 -->
@@ -181,18 +182,45 @@
                 </a>
                 <h3>CHESONA Magic Keyboard for iPad Air</h3>
                 <p class="price">AU$87.86</p>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <button class="add-to-cart-btn" onclick="addToCart('CHESONA Magic Keyboard for iPad Air', 'AU$87.86')">Add to Cart</button>
             </div>
         </div>
     </div>
 
-    <!-- Small Contact Us Section -->
-    <div class="contact-us">
-        <h2>Contact Us</h2>
-        <p>If you have any questions, feel free to <a href="contact.html">contact us</a> anytime!</p>
+    <!-- Cart Popup -->
+    <div class="cart-popup" id="cartPopup">
+        <h3>Your Cart</h3>
+        <ul id="cartItems"></ul>
+        <button class="checkout-btn" onclick="window.location.href='payment.html'">Buy Now</button>
+        <button class="close-popup" onclick="closeCartPopup()">Close</button>
     </div>
 
     <script>
+        let cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            displayCart();
+        }
+
+        function displayCart() {
+            const cartPopup = document.getElementById('cartPopup');
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = '';
+
+            cart.forEach((item) => {
+                const li = document.createElement('li');
+                li.innerText = `${item.name} - ${item.price}`;
+                cartItems.appendChild(li);
+            });
+
+            cartPopup.style.display = 'block';
+        }
+
+        function closeCartPopup() {
+            document.getElementById('cartPopup').style.display = 'none';
+        }
+
         function searchProducts() {
             const searchTerm = document.getElementById("searchInput").value.toLowerCase();
             const products = document.getElementsByClassName("product-item");
@@ -208,8 +236,5 @@
         }
     </script>
 
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-    </div>
 </body>
 </html>
