@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Keyboard M4 2024</title>
     
     <style>
         body {
@@ -21,18 +21,45 @@
 
         .product-details {
             display: flex;
+            justify-content: space-between;
             flex-wrap: wrap;
         }
 
-        .product-images {
+        .slider-container {
             flex: 1;
+            position: relative;
             text-align: center;
         }
 
-        .product-images img {
+        .slider-image {
+            display: none;
             max-width: 100%;
             height: auto;
             margin-bottom: 20px;
+        }
+
+        .slider-image.active {
+            display: block;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
         }
 
         .product-info {
@@ -80,21 +107,37 @@
         .back-link:hover {
             color: #0056b3;
         }
+
+        @media (max-width: 768px) {
+            .product-details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .slider-container, .product-info {
+                width: 100%;
+                padding-left: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="product-details">
-            <!-- Product Images -->
-            <div class="product-images">
-                <img src="https://img.kwcdn.com/product/fancy/75570260-5eda-4790-b11a-ea73436f3ece.jpg?imageView2/2/w/800/q/70/format/webp" alt="2024 M4 Magic Keyboard - Image 1">
-                <img src="https://img.kwcdn.com/product/open/2024-08-12/1723431956874-3e25592a89d44cbeb4ab9a5e33d196dd-goods.jpeg?imageView2/2/w/800/q/70/format/webp" alt="2024 M4 Magic Keyboard - Image 2">
-                <img src="https://img.kwcdn.com/product/open/2024-08-13/1723521591612-e1306d6a10c24c268cb3dcb67d050e05-goods.jpeg?imageView2/2/w/800/q/70/format/webp" alt="2024 M4 Magic Keyboard - Image 3">
+            <!-- Image slider with arrows for navigation -->
+            <div class="slider-container">
+                <img class="slider-image active" src="https://img.kwcdn.com/product/fancy/75570260-5eda-4790-b11a-ea73436f3ece.jpg?imageView2/2/w/800/q/70/format/webp" alt="2024 M4 Magic Keyboard - Image 1">
+                <img class="slider-image" src="https://img.kwcdn.com/product/open/2024-08-12/1723431956874-3e25592a89d44cbeb4ab9a5e33d196dd-goods.jpeg?imageView2/2/w/800/q/70/format/webp" alt="2024 M4 Magic Keyboard - Image 2">
+                <img class="slider-image" src="https://img.kwcdn.com/product/open/2024-08-13/1723521591612-e1306d6a10c24c268cb3dcb67d050e05-goods.jpeg?imageView2/2/w/800/q/70/format/webp" alt="2024 M4 Magic Keyboard - Image 3">
+                
+                <!-- Arrows for image navigation -->
+                <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
             </div>
 
-            <!-- Product Info -->
+            <!-- Product info -->
             <div class="product-info">
-                <h1>Keyboard M4 2024(ONLY)</h1>
+                <h1>Keyboard M4 2024 (ONLY)</h1>
                 <p>Enhance your iPad Pro experience with the 2024 M4 Magic Keyboard, featuring a sleek design, backlit keys, and an improved typing experience.</p>
                 <p>Compatible with iPad Pro models from 2021 onwards.</p>
                 <p class="price">AU$98.27</p>
@@ -104,5 +147,16 @@
 
         <a class="back-link" href="index.html">&larr; Back to Shopping Page</a>
     </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.slider-image');
+
+        function changeSlide(direction) {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+    </script>
 </body>
 </html>
