@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Page</title>
+    <button onclick="location.href='home.html'">Home</button>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -86,7 +87,7 @@
             cursor: pointer;
         }
 
-        /* Cart Popup */
+        /* Cart Popup Styling */
         .cart-popup {
             position: fixed;
             bottom: 20px;
@@ -95,27 +96,22 @@
             padding: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            display: none;
+            display: none; /* Initially hidden */
             width: 300px;
         }
 
         .cart-popup h3 {
             margin: 0;
-            font-size: 18px;
         }
 
         .cart-popup ul {
             list-style-type: none;
             padding: 0;
-            margin: 10px 0;
         }
 
-        .cart-popup ul li {
-            margin-bottom: 10px;
-        }
-
-        .cart-popup .checkout-btn {
-            padding: 10px 20px;
+        .cart-popup button {
+            margin-top: 10px;
+            padding: 10px;
             background-color: #28a745;
             color: white;
             border: none;
@@ -124,13 +120,53 @@
         }
 
         .cart-popup .close-popup {
-            background-color: #dc3545;
+            background-color: red;
+            margin-left: 10px;
+        }
+
+        /* Contact Us Section */
+        .contact-us {
+            background-color: #333;
             color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-us h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .contact-us p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-us a {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-us a:hover {
+            color: #a8e063;
+        }
+
+        .alert {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+
+        .alert .closebtn {
+            margin-left: 15px;
+            color: black;
+            font-weight: bold;
             float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -195,18 +231,25 @@
         <button class="close-popup" onclick="closeCartPopup()">Close</button>
     </div>
 
+    <!-- Small Contact Us Section -->
+    <div class="contact-us">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to <a href="contact.html">contact us</a> anytime!</p>
+    </div>
+
     <script>
         let cart = [];
 
         function addToCart(productName, productPrice) {
-            cart.push({ name: productName, price: productPrice });
+            const item = { name: productName, price: productPrice };
+            cart.push(item);
             displayCart();
         }
 
         function displayCart() {
             const cartPopup = document.getElementById('cartPopup');
             const cartItems = document.getElementById('cartItems');
-            cartItems.innerHTML = '';
+            cartItems.innerHTML = ''; // Clear previous items
 
             cart.forEach((item) => {
                 const li = document.createElement('li');
@@ -214,7 +257,7 @@
                 cartItems.appendChild(li);
             });
 
-            cartPopup.style.display = 'block';
+            cartPopup.style.display = 'block'; // Show cart popup
         }
 
         function closeCartPopup() {
@@ -236,5 +279,8 @@
         }
     </script>
 
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
 </body>
 </html>
