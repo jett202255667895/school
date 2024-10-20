@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product-details {
+            display: flex; /* Flexbox for side-by-side layout */
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .slider-container {
+            width: 50%; /* Set the width for the image section */
+            position: relative;
+        }
+
+        .slider-image {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .slider-image.active {
+            display: block;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        .product-info {
+            width: 45%; /* Set the width for the product info section */
+            padding-left: 20px; /* Add some padding for spacing */
+        }
+
+        .product-info h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .product-info p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .buy-now-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buy-now-btn:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .product-details {
+                flex-direction: column; /* Stack vertically on smaller screens */
+                align-items: center;
+            }
+
+            .slider-container, .product-info {
+                width: 100%; /* Make them full width on small screens */
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-details">
+            <!-- Image slider on the left -->
+            <div class="slider-container">
+                <img class="slider-image active" src="https://img.kwcdn.com/product/open/2024-08-12/1723456406099-0fec691ef5e24cad8a672b5d307a68d6-goods.jpeg?imageView2/2/w/800/q/70/format/webp" alt="2024 M4 Magic Keyboard Image 1">
+                <img class="slider-image" src="https://img.kwcdn.com/product/open/2024-08-12/1723456414842-2848cb645cc24336b42ebaf46d7f0f03-goods.jpeg?imageView2/2/w/800/q/70/format/webp" alt="2024 M4 Magic Keyboard Image 2">
+                <img class="slider-image" src="https://img.kwcdn.com/product/open/2024-08-12/1723456411174-32de3dbf80ec4cb585ea5d189891c925-goods.jpeg?imageView2/2/w/800/q/70/format/webp" alt="2024 M4 Magic Keyboard Image 3">
+
+                <!-- Arrows for navigation -->
+                <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+
+            <!-- Product information on the right -->
+            <div class="product-info">
+                <h1>2024 M4 Magic Keyboard for iPad Pro</h1>
+                <p>Enhance your iPad Pro experience with the 2024 M4 Magic Keyboard, featuring a sleek design, backlit keys, and an improved typing experience.</p>
+                <p>Compatible with iPad Pro models from 2021 onwards.</p>
+                <p class="price">AU$87.86</p>
+                <button class="buy-now-btn" onclick="window.location.href='payment.html'">Buy Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.slider-image');
+
+        function changeSlide(direction) {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Page</title>
+    <button onclick="location.href='home.html'">Home</button>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        .search-bar {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 60%;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-item {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-item h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: green;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .add-to-cart-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Contact Us Section */
+        .contact-us {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-us h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .contact-us p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-us a {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-us a:hover {
+            color: #a8e063;
+        }
+
+        .alert {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+
+        .alert .closebtn {
+            margin-left: 15px;
+            color: black;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Shopping Page</h1>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for products..." onkeyup="searchProducts()">
+    </div>
+
+    <div class="container">
+        <div class="product-grid" id="productGrid">
+            <!-- Product 1 -->
+            <div class="product-item">
+                <a href="product1.html">
+                    <img src="https://example.com/product1.jpg" alt="Product 1">
+                </a>
+                <h3>2024 M4 Magic Keyboard for iPad Pro</h3>
+                <p class="price">AU$98.27</p>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-item">
+                <a href="product2.html">
+                    <img src="https://example.com/product2.jpg" alt="Product 2">
+                </a>
+                <h3>Mulan iPad Case With Keyboard</h3>
+                <p class="price">AU$114.98</p>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-item">
+                <a href="product3.html">
+                    <img src="https://example.com/product3.jpg" alt="Product 3">
+                </a>
+                <h3>2024 Magic Keyboard for iPad Pro 11-inch</h3>
+                <p class="price">AU$143.21</p>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-item">
+                <a href="product4.html">
+                    <img src="https://example.com/product4.jpg" alt="Product 4">
+                </a>
+                <h3>CHESONA Magic Keyboard for iPad Air</h3>
+                <p class="price">AU$87.86</p>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Small Contact Us Section -->
+    <div class="contact-us">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to <a href="contact.html">contact us</a> anytime!</p>
+    </div>
+
+    <script>
+        function searchProducts() {
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            const products = document.getElementsByClassName("product-item");
+
+            for (let i = 0; i < products.length; i++) {
+                const productName = products[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    products[i].style.display = "block";
+                } else {
+                    products[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+</body>
+</html>

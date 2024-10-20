@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="number"]:focus {
+            border-color: #555;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+
+        .order-summary {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .disclaimer {
+            color: #999;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Checkout</h2>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="name">Customer Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="postcode">Postcode</label>
+                <input type="text" id="postcode" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="number" id="phone" required>
+            </div>
+            
+            <div class="form-group order-summary">
+                <strong>Order Summary:</strong>
+                <p>Product: Magic Keyboard</p>
+                <p>Total: AU$87.86</p>
+            </div>
+
+            <button type="button" class="btn-submit" id="place-order-btn">Place Order</button>
+        </form>
+
+        <div class="disclaimer">
+            <p><strong>Disclaimer:</strong> This is a fake order placed for a school project. You will not receive any real products.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('place-order-btn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const postcode = document.getElementById('postcode').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const orderNumber = Math.floor(Math.random() * 1000000); // Random Order Number
+
+            if (name && email && postcode && address && phone) {
+                alert(`Order placed!\nOrder Number: ${orderNumber}\nName: ${name}\nPostcode: ${postcode}`);
+
+                // Save order number in localStorage to pass it to confirmation.html
+                localStorage.setItem('orderNumber', orderNumber);
+
+                // Redirect to confirmation page
+                window.location.href = "confirmation.html";
+            } else {
+                alert('Please fill in all fields!');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product-details {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .product-images {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-images img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .product-info {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .product-info h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .product-info p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .buy-now-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buy-now-btn:hover {
+            background-color: #218838;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-details">
+            <!-- Product Images -->
+            <div class="product-images">
+                <img src="https://example.com/product1-image1.jpg" alt="2024 M4 Magic Keyboard - Image 1">
+                <img src="https://example.com/product1-image2.jpg" alt="2024 M4 Magic Keyboard - Image 2">
+                <img src="https://example.com/product1-image3.jpg" alt="2024 M4 Magic Keyboard - Image 3">
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1>2024 M4 Magic Keyboard for iPad Pro</h1>
+                <p>Enhance your iPad Pro experience with the 2024 M4 Magic Keyboard, featuring a sleek design, backlit keys, and an improved typing experience.</p>
+                <p>Compatible with iPad Pro models from 2021 onwards.</p>
+                <p class="price">AU$98.27</p>
+                <button class="buy-now-btn" onclick="window.location.href='payment.html'">Buy Now</button>
+            </div>
+        </div>
+
+        <a class="back-link" href="index.html">&larr; Back to Shopping Page</a>
+    </div>
+</body>
+</html>
